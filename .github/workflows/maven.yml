@@ -30,7 +30,7 @@ jobs:
         cache: maven
     - name: Build & run Config Server
       run: |
-          cd config-server
+          cd discovery
           mvn clean package -DskipTests
           nohup java -jar target/*.jar > config.log 2>&1 &
           sleep 10
