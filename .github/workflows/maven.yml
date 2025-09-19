@@ -28,8 +28,12 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
         cache: maven
-    - name: Build all services with Maven
-      run: mvn clean package -DskipTests
+    - name: Build & run Config Server
+      run: |
+          cd config-server
+          mvn clean package -DskipTests
+          nohup java -jar target/*.jar > config.log 2>&1 &
+          sleep 10
 
     # Optional: Uploads the full dependency graph to GitHub to improve the quality of Dependabot alerts this repository can receive
     # - name: Update dependency graph
